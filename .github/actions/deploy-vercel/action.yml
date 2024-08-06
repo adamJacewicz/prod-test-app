@@ -22,7 +22,7 @@ runs:
       run: |
         vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
         vercel build --prod --token=${{ inputs.vercel-token }}
-        ercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
+        vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
       shell: bash
 
     - name: PREVIEW Vercel Deployment
