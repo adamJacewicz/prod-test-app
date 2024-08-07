@@ -26,9 +26,6 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - name: Build app
-        run: npm run build
-
       - name: Deploy app to Vercel preview env
         uses: ./.github/actions/deploy-vercel
         with:
