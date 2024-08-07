@@ -16,11 +16,8 @@ jobs:
       - name: Configure node
         uses: ./.github/actions/setup-project
 
-      - name: Run lint
-        run: npm run lint
-
-      - name: Run tests
-        run: npm run test
+      - name: Run lint and tests
+        uses: ./.github/actions/lint-and-test
 
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
