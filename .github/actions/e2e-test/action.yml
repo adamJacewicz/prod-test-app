@@ -9,10 +9,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install browser dependencies
-      run: sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libgbm1
-      shell: bash
-
     - name: Run tests
       run: npm run test:e2e
       shell: bash
