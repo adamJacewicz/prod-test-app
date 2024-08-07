@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import EnvVersion from './components/EnvVersion.tsx';
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
         <h1 className="text-xl font-bold text-center">🚀 Rick and Morty - Fan Service - test</h1>
       </div>
       <Outlet />
+      <EnvVersion className="m-1 ml-auto" />
     </div>
   );
 };

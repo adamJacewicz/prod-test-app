@@ -4,8 +4,10 @@ on:
   workflow_call:
 
 jobs:
-  deploy:
+  deploy-vercel:
     runs-on: ubuntu-latest
+    environment:
+      name: 'Staging'
 
     steps:
       - name: Checkout repository
@@ -22,6 +24,8 @@ jobs:
 
       - name: Build app
         run: npm run build
+        env:
+          VITE_ENVIRONMENT: 'Staging'
 
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
