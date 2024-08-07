@@ -9,14 +9,17 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Show URL1
+      run: |
+        echo "BASE_URL: ${{ inputs.e2e-base-url }}"
+      shell: bash
+
     - name: Show URL
       uses: actions/github-script@v7
       with:
         script: |
           const { DEPLOY_URL } = process.env
           console.log(DEPLOY_URL);
-          console.log("@@@@@");
-          console.log(${{ inputs.e2e-base-url }});
     - name: Run tests
       run: npm run test:e2e
       shell: bash
