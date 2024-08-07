@@ -2,15 +2,13 @@ name: Deploy Netlify
 
 on:
   workflow_call:
-    secrets:
-      NETLIFY_AUTH_TOKEN:
-        required: true
-      NETLIFY_SITE_ID:
-        required: true
+
 
 jobs:
-  deploy:
+  deploy-netlify:
     runs-on: ubuntu-latest
+    environment:
+      name: 'Development'
 
     steps:
       - name: Checkout repository
@@ -27,6 +25,8 @@ jobs:
 
       - name: Build app
         run: npm run build
+        env:
+          VITE_ENVIRONMENT: 'Development'
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0.0
@@ -35,6 +35,7 @@ jobs:
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions"
+          github-deployment-environment: "Development"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
