@@ -68,6 +68,7 @@ runs:
           });
 
     - name: Run e2e
+      if: ${{ inputs.mode == 'staging' }}
       uses: ./.github/actions/e2e-test
       with:
         e2e-base-url: ${{ env.DEPLOY_URL }}
