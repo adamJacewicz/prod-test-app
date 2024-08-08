@@ -10,6 +10,8 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 
+console.log(process.env.CI);
+console.log(process.env.VERCEL_AUTOMATION_BYPASS_SECRET);
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -19,7 +21,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'http://localhost:3000',
+    baseURL: process.env.CI ? process.env.E2E_BASE_URL : 'https://frontend-bootstrap.vercel.app/',
     trace: 'on-first-retry',
     extraHTTPHeaders: {
       'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET as string,
