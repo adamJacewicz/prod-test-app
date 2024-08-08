@@ -71,3 +71,4 @@ runs:
       uses: ./.github/actions/e2e-test
       with:
         e2e-base-url: ${{ env.DEPLOY_URL }}
+        bypass-secret: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
