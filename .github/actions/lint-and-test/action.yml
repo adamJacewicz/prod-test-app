@@ -1,0 +1,13 @@
+name: Lint and test
+description: Check formatting and run tests
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run lint
+      run: npm run lint
+      shell: bash
+
+    - name: Run tests
+      run: npm run test
+      shell: bash

@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import { URLs } from '../utils/constants';
 
 export class CharactersPage {
-  private readonly page: Page;
+  readonly page: Page;
   private readonly url = URLs.CHARACTERS_PAGE;
 
   constructor(page: Page) {
