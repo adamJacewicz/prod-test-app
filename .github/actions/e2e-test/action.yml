@@ -5,9 +5,6 @@ inputs:
   e2e-base-url:
     description: Base url
     required: true
-  bypass-secret:
-    description: Bypass secret
-    required: true
 
 runs:
   using: 'composite'
@@ -17,5 +14,4 @@ runs:
       shell: bash
       env:
         E2E_BASE_URL: ${{ inputs.e2e-base-url }}
-        VERCEL_AUTOMATION_BYPASS_SECRET: ${{ inputs.bypass-secret }}
 
