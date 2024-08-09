@@ -20,3 +20,5 @@ jobs:
         run: npx playwright test
         env:
           E2E_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
