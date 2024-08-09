@@ -18,8 +18,6 @@ jobs:
     needs: [deploy-vercel]
     uses: ./.github/workflows/e2e.yml
     secrets: inherit
-    env:
-      E2E_BASE_URL: ${{ needs.deploy-vercel.outputs.deployment_url }}
-      VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+
 
 
