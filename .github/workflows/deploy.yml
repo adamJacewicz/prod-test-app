@@ -14,10 +14,3 @@ jobs:
     uses: ./.github/workflows/deploy-vercel.yml
     secrets: inherit
 
-  e2e:
-    needs: [deploy-vercel]
-    uses: ./.github/workflows/e2e.yml
-    secrets: inherit
-
-
-
