@@ -55,8 +55,8 @@ runs:
             body: `Preview URL: ${DEPLOY_URL}`
           });
 
-#    - name: Run e2e
-#      if: ${{ inputs.mode == 'production' }}
-#      uses: ./.github/actions/e2e-test
-#      with:
-#        e2e-base-url: ${{ env.DEPLOY_URL }}
+    - name: Run e2e
+      if: ${{ inputs.mode == 'production' }}
+      uses: ./.github/actions/e2e-test
+      with:
+        e2e-base-url: ${{ env.DEPLOY_URL }}
