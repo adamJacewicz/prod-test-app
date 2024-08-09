@@ -14,4 +14,3 @@ runs:
       shell: bash
       env:
         E2E_BASE_URL: ${{ inputs.e2e-base-url }}
-
