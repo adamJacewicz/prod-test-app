@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 'Staging'
-    if: github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Production')
+    if: github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Staging')
     steps:
       - uses: actions/checkout@v4
       - name: Configure node
