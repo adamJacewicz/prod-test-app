@@ -1,13 +1,13 @@
 name: Playwright tests
 
 on:
-  workflow_call:
+  deployment_status:
 jobs:
   test:
     runs-on: ubuntu-latest
     environment:
       name: 'Staging'
-    if: github.event.deployment_status.state == 'success'
+    if: github.event.deployment_status.state == 'success' && contains(github.event.deployment_status.environment, 'Production')
     steps:
       - uses: actions/checkout@v4
       - name: Configure node
@@ -19,4 +19,4 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          E2E_BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          E2E_BASE_URL: ${{ github.event.deployment_status.target_url }}
