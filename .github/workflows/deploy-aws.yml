@@ -25,9 +25,13 @@ jobs:
         env:
           VITE_ENVIRONMENT: 'Production'
 
-      - name: Deploy to AWS
-        run: aws s3 sync s3://ofe-rmbucket
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@4.0.2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
+
+      - name: Deploy to AWS
+        run: aws s3 sync s3://ofe-rmbucket
+
