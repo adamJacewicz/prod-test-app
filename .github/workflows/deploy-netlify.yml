@@ -24,6 +24,7 @@ jobs:
         run: npm run build
         env:
           VITE_ENVIRONMENT: 'Development'
+          VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0.0

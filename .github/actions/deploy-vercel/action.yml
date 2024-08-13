@@ -27,6 +27,7 @@ runs:
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       env:
         VITE_ENVIRONMENT: 'Staging'
+        VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
       shell: bash
 
 
@@ -40,6 +41,7 @@ runs:
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
       env:
         VITE_ENVIRONMENT: 'Preview'
+        VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
       shell: bash
 
     - name: Comment with URL

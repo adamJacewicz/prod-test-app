@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_ENVIRONMENT: string;
   readonly APP_VERSION: string;
+  readonly VITE_AWS_MONITORING_API: string;
 }
 
 interface ImportMeta {
