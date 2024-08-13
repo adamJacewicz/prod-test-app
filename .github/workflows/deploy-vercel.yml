@@ -19,6 +19,12 @@ jobs:
       - name: Run lint and tests
         uses: ./.github/actions/lint-and-test
 
+      - name: Build app
+        run: npm run build
+        env:
+          VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+          VITE_ENVIRONMENT: 'Staging'
+
       - name: Deploy app to Vercel production env
         uses: ./.github/actions/deploy-vercel
         with:
@@ -29,3 +35,4 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
           VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+          VITE_ENVIRONMENT: 'Staging'
