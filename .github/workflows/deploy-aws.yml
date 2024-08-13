@@ -23,6 +23,7 @@ jobs:
         run: npm run build
         env:
           VITE_ENVIRONMENT: 'Production'
+          VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4.0.2
