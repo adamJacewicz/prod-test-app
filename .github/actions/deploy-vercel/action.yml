@@ -25,9 +25,8 @@ runs:
         DEPLOY_OUTPUT="$(vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-      env:
-        VITE_ENVIRONMENT: 'Staging'
-        VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+#      env:
+#        VITE_ENVIRONMENT: 'Staging'
       shell: bash
 
 
@@ -39,9 +38,8 @@ runs:
         DEPLOY_OUTPUT="$(vercel deploy --prebuilt --token=${{ inputs.vercel-token }})"
         DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep http | tail -n 1)
         echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-      env:
-        VITE_ENVIRONMENT: 'Preview'
-        VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+#      env:
+#        VITE_ENVIRONMENT: 'Preview'
       shell: bash
 
     - name: Comment with URL
