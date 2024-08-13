@@ -10,6 +10,7 @@ interface ConfigProviderProps {
 export const ConfigProvider = ({ children }: ConfigProviderProps) => {
   const cfg: Config = {
     appVersion: __APP_VERSION__,
+    appEnv: import.meta.env.VITE_ENVIRONMENT || 'LOCAL',
   };
 
   return <ConfigContext.Provider value={cfg}>{children}</ConfigContext.Provider>;
