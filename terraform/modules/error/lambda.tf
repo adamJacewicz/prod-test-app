@@ -9,7 +9,7 @@ data "external" "lambda_builder_sh" {
 }
 
 resource "aws_iam_role" "iam_role_for_lambda" {
-  name = "LambdaExecutionRole"
+  name = "ErrorLambdaExecutionRole"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
