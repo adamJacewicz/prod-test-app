@@ -1,12 +1,12 @@
 # For Windows
-data "external" "lambda_builder_sh" {
-  program = ["cmd", "/D", "cd ${var.lambda_error_tracking_source_dir} && npm install >NUL 2>&1 && npm run build >NUL 2>&1 && echo {}"]
-}
+# data "external" "lambda_builder_sh" {
+#   program = ["cmd", "/D", "cd ${var.lambda_error_tracking_source_dir} && npm install >NUL 2>&1 && npm run build >NUL 2>&1 && echo {}"]
+# }
 
 # For Linux / MacOS
-# data "external" "lambda_builder_sh" {
-#   program = ["bash", "-c", "cd ${var.lambda_error_tracking_source_dir} && npm install > '/dev/null' 2>&1 && npm run build > '/dev/null' 2>&1 && echo \"{ }\" "]
-# }
+data "external" "lambda_builder_sh" {
+  program = ["bash", "-c", "cd ${var.lambda_error_tracking_source_dir} && npm install > '/dev/null' 2>&1 && npm run build > '/dev/null' 2>&1 && echo \"{ }\" "]
+}
 
 resource "aws_iam_role" "iam_role_for_lambda" {
   name = "LambdaExecutionRole"
