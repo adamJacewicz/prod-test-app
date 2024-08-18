@@ -23,6 +23,7 @@ jobs:
         run: npm run build
         env:
           VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+          VITE_AWS_ERROR_TRACKING_API: ${{ secrets.AWS_ERROR_TRACKING_API }}
           VITE_ENVIRONMENT: 'Staging'
 
       - name: Deploy app to Vercel production env
@@ -35,4 +36,5 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
           VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+          VITE_AWS_ERROR_TRACKING_API: ${{ secrets.AWS_ERROR_TRACKING_API }}
           VITE_ENVIRONMENT: 'Staging'
