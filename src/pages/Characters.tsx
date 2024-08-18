@@ -6,6 +6,7 @@ const Characters = () => {
   const { characters } = useLoaderData() as { characters: Character[] };
 
   useEffect(() => {
+    if (import.meta.env.VITE_ENVIRONMENT === "LOCAL") return
       const fetchData: Partial<PerformanceResourceTiming> = performance.getEntriesByName("https://rickandmortyapi.com/api/character")[0]!;
       fetch(`${import.meta.env.VITE_AWS_MONITORING_API}/prod/monitoring`, {
         method: "POST",
