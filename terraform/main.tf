@@ -8,6 +8,11 @@ terraform {
 
   required_version = ">= 1.5.0"
 
+  external = {
+    source = "hashicorp/external"
+    version = "~> 2.3.3"
+  }
+
   backend "s3" {
     bucket         = "frd-terraform-state-bucket"
     key            = "state/terraform.tfstate"
