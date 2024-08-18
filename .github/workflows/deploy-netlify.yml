@@ -25,6 +25,7 @@ jobs:
         env:
           VITE_ENVIRONMENT: 'Development'
           VITE_AWS_MONITORING_API: ${{ secrets.AWS_MONITORING_API }}
+          VITE_AWS_ERROR_TRACKING_API: ${{ secrets.AWS_ERROR_TRACKING_API }}
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0.0
