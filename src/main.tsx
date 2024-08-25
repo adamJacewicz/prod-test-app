@@ -5,7 +5,9 @@ import App from './App';
 import { fetchCharacter, fetchCharacters } from './loaders/CharacterLoader';
 import { CharacterRouteParams } from './types/types';
 import { ConfigProvider } from './context/ConfigContext';
-import "./utils/custom-error.ts"
+import './utils/custom-error.ts';
+import { createInstance } from '@featurevisor/sdk';
+import { FeaturevisorProvider } from '@featurevisor/react';
 
 const Characters = lazy(() => import('./pages/Characters'));
 const CharacterDetails = lazy(() => import('./pages/CharacterDetails'));
@@ -18,23 +20,30 @@ const router = createHashRouter([
       {
         index: true,
         loader: fetchCharacters,
-        element: <Characters />,
+        element: <Characters />
       },
       {
         path: 'character/:id',
         loader: async ({ params }) => {
           return fetchCharacter({ params } as CharacterRouteParams);
         },
-        element: <CharacterDetails />,
-      },
-    ],
-  },
+        element: <CharacterDetails />
+      }
+    ]
+  }
 ]);
+
+const envName = import.meta.env.VITE_ENVIRONMENT || 'preview';
+const featurevisor = createInstance({
+  datafileUrl: `https://dsz1j4uozijd9.cloudfront.net/datafiles/${envName}/datafile-tag-all.json`
+});
 
 ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
   <React.StrictMode>
-    <ConfigProvider>
-      <RouterProvider router={router} />
-    </ConfigProvider>
-  </React.StrictMode>,
+    <FeaturevisorProvider instance={featurevisor}>
+      <ConfigProvider>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </FeaturevisorProvider>
+  </React.StrictMode>
 );
