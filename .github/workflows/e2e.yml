@@ -1,0 +1,26 @@
+name: E2E Test Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run e2e
+        id: e2e
+        run: npm run test:e2e
+        env:
+          E2E_BASE_URL: https://prod-test-app.netlify.app/
