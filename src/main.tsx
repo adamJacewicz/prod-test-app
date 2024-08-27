@@ -35,7 +35,7 @@ const router = createHashRouter([
 
 const envName = import.meta.env.VITE_ENVIRONMENT || 'preview';
 const featurevisor = createInstance({
-  datafileUrl: `https://dsz1j4uozijd9.cloudfront.net/datafiles/${envName}/datafile-tag-all.json`
+  datafileUrl: `https://dsz1j4uozijd9.cloudfront.net/datafiles/${envName.toLowerCase()}/datafile-tag-all.json`
 });
 
 ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
