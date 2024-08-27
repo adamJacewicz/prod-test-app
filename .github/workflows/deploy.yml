@@ -7,7 +7,13 @@ on:
 
 jobs:
   deploy-netlify:
+    needs: deploy-netlify
     uses: ./.github/workflows/deploy-netlify.yml
+    secrets: inherit
+
+  e2e:
+    needs: deploy-netlify
+    uses: ./.github/workflows/e2e.yml
     secrets: inherit
 
   deploy-vercel:
