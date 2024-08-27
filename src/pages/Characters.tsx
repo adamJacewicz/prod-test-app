@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Character } from '../../lib/rick-and-morty-api-client';
+import { useFlag } from '@featurevisor/react';
+import FakePagination from './FakePagination.tsx';
 
 const Characters = () => {
   const { characters } = useLoaderData() as { characters: Character[] };
 
+  const isPaginationEnabled = useFlag('pagination', {
+    country: new URLSearchParams(window.location.search).get('country')
+  });
+
   useEffect(() => {
-    if (import.meta.env.VITE_ENVIRONMENT === "LOCAL") return
-      const fetchData: Partial<PerformanceResourceTiming> = performance.getEntriesByName("https://rickandmortyapi.com/api/character")[0]!;
-      fetch(`${import.meta.env.VITE_AWS_MONITORING_API}/prod/monitoring`, {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify({
-          loadTimeMs: fetchData.responseEnd
-        })
+    if (import.meta.env.VITE_ENVIRONMENT === 'LOCAL') return;
+    const fetchData: Partial<PerformanceResourceTiming> = performance.getEntriesByName('https://rickandmortyapi.com/api/character')[0]!;
+    fetch(`${import.meta.env.VITE_AWS_MONITORING_API}/prod/monitoring`, {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify({
+        loadTimeMs: fetchData.responseEnd
       })
+    });
   }, [characters]);
 
   return (
@@ -24,7 +30,8 @@ const Characters = () => {
         {characters.map((character) => (
           <li key={character.id} className="mb-4">
             <Link to={`character/${character.id}`} data-testid={`character-link-${character.id}`}>
-              <div className="flex flex-row items-center space-x-2 border border-gray-100 rounded-md hover:border-blue-200 hover:bg-blue-100/50 p-4">
+              <div
+                className="flex flex-row items-center space-x-2 border border-gray-100 rounded-md hover:border-blue-200 hover:bg-blue-100/50 p-4">
                 <img
                   src={character.image}
                   alt={`${character.name} - Profile Image`}
@@ -36,6 +43,7 @@ const Characters = () => {
           </li>
         ))}
       </ul>
+      {isPaginationEnabled && <FakePagination />}
     </div>
   );
 };
