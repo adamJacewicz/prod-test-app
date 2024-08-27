@@ -56,7 +56,7 @@ runs:
           });
 
     - name: Run e2e
-      if: ${{ inputs.mode == 'production' }}
+      if: ${{ inputs.mode == 'preview' }}
       uses: ./.github/actions/e2e-test
       with:
         e2e-base-url: ${{ env.DEPLOY_URL }}
