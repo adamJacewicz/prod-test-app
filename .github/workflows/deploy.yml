@@ -7,7 +7,6 @@ on:
 
 jobs:
   deploy-netlify:
-    needs: deploy-netlify
     uses: ./.github/workflows/deploy-netlify.yml
     secrets: inherit
 
