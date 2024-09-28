@@ -16,12 +16,12 @@ jobs:
       - name: Configure node
         uses: ./.github/actions/setup-project
 
-      - name: Run e2e
-        uses: ./.github/actions/e2e-test
-        with:
-          e2e-base-url: 'https://prod-test-app.vercel.app/'
+      - name: Run E2E on Staging
+        id: e2e
+        run: npm run test:e2e
+        env:
+          E2E_BASE_URL: https://prod-test-app.vercel.app/
 
       - name: Trigger Webhook on Failure
         if: failure()
         run: curl https://webhook.site/05cb7f9c-5cdb-43a3-9333-314035f243a0
-
