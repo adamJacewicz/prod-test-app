@@ -7,4 +7,8 @@ out
 /blob-report/
 /playwright/.cache/
 ./terraform/.terraform
+.npmrc
 .env
+.idea
+terraform/.terraform
+terraform/.terraform.lock.hcl
